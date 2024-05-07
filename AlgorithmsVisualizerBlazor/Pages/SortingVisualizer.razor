@@ -1,0 +1,63 @@
+﻿@page "/sorting-visualizer"
+<PageTitle>Algorithms Visualizer</PageTitle>
+@using AlgorithmsVisualizerBlazor.Algorithms
+@using System.Collections.Generic
+
+<h1>Algorithms Visualizer</h1>
+<p>Select an algorithm:</p>
+<select @bind="selectedAlgorithm">
+    <option value="1">Bubble Sort</option>
+    <option value="2">Selection Sort</option>
+    <option value="3">Insertion Sort</option>
+</select>
+
+<p>Enter numbers separated by spaces:</p>
+<input @bind="numberListInput" />
+
+<button @onclick="VisualizeAlgorithm">Visualize</button>
+
+@if (sortedList != null)
+{
+    <p>Sorted List: @sortedList</p>
+}
+
+@code {
+    private string selectedAlgorithm = "1";
+    private string numberListInput;
+    private string sortedList;
+
+    private void VisualizeAlgorithm()
+    {
+        var numbers = ParseInput(numberListInput);
+
+        switch (selectedAlgorithm)
+        {
+            case "1":
+                Algorithms.BubbleSort(numbers);
+                sortedList = Algorithms.ListToString(numbers);
+                break;
+            case "2":
+                Algorithms.SelectionSort(numbers);
+                sortedList = Algorithms.ListToString(numbers);
+                break;
+            case "3":
+                Algorithms.InsertionSort(numbers);
+                sortedList = Algorithms.ListToString(numbers);
+                break;
+            default:
+                sortedList = null;
+                break;
+        }
+    }
+
+    private List<int> ParseInput(string input)
+    {
+        var numbers = new List<int>();
+        foreach (var number in input.Split(' ', StringSplitOptions.RemoveEmptyEntries))
+        {
+            if (int.TryParse(number, out var result))
+                numbers.Add(result);
+        }
+        return numbers;
+    }
+}
