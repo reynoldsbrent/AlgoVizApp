@@ -9,6 +9,8 @@
     <option value="1">Bubble Sort</option>
     <option value="2">Selection Sort</option>
     <option value="3">Insertion Sort</option>
+    <option value="4">Merge Sort</option>
+    <option value="5">Quick Sort</option>
 </select>
 
 <p>Enter numbers separated by spaces:</p>
@@ -43,6 +45,17 @@
             case "3":
                 Algorithms.InsertionSort(numbers);
                 sortedList = Algorithms.ListToString(numbers);
+                break;
+            case "4":
+                int[] numArray = numbers.ToArray();
+                Algorithms.MergeSort(numArray);
+                sortedList = Algorithms.ArrayToString(numArray);
+                Console.WriteLine("Sorted list: " + sortedList);
+                break;
+            case "5":
+                Algorithms.QuickSort(numbers, 0, numbers.Count - 1);
+                sortedList = Algorithms.ListToString(numbers);
+                Console.WriteLine("Sorted list: " + sortedList);
                 break;
             default:
                 sortedList = null;
