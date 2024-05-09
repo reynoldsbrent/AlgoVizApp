@@ -11,6 +11,7 @@
     <option value="3">Insertion Sort</option>
     <option value="4">Merge Sort</option>
     <option value="5">Quick Sort</option>
+    <option value="6">Heap Sort</option>
 </select>
 
 <p>Enter numbers separated by spaces:</p>
@@ -54,6 +55,11 @@
                 break;
             case "5":
                 Algorithms.QuickSort(numbers, 0, numbers.Count - 1);
+                sortedList = Algorithms.ListToString(numbers);
+                Console.WriteLine("Sorted list: " + sortedList);
+                break;
+            case "6":
+                Algorithms.HeapSort(numbers, numbers.Count);
                 sortedList = Algorithms.ListToString(numbers);
                 Console.WriteLine("Sorted list: " + sortedList);
                 break;
